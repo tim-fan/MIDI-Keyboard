@@ -68,13 +68,15 @@ void setup() {
   }
 
   pinMode(LED_BUILTIN, OUTPUT);  
-  Serial.begin(9600);
+
+  // for debugging
+//  Serial.begin(960/0);
+
   delayMicroseconds(WAIT_DELAY);
 
 }
 
 void loop() {
-  delay(100);
 
   //scan 
   for (int o=0; o<NUM_OUTPUTS; o++){
@@ -97,7 +99,8 @@ void loop() {
         digitalWrite(LED_BUILTIN, led_state);
         led_state = !led_state;
 
-        Serial.println(note);        
+//        /Serial.println(note); 
+               
         usbMIDI.sendNoteOn(note, NOTE_VELOCITY, CHANNEL);
       }
       else if (buttons[o][i]->fallingEdge()) {
